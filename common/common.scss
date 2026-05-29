@@ -1,0 +1,325 @@
+// Minimal Deadlock: Old Gods-inspired Discourse theme.
+// Uses Discourse variables first, with restrained selector styling.
+
+@font-face {
+  font-family: "Deadlock Oracle";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("https://cdn.fastly.steamstatic.com/apps/deadlock/fonts/VALVEOracle-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Deadlock Oracle";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.fastly.steamstatic.com/apps/deadlock/fonts/VALVEOracle-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Deadlock Oracle";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://cdn.fastly.steamstatic.com/apps/deadlock/fonts/VALVEOracle-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Deadlock Pulp";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://cdn.fastly.steamstatic.com/apps/deadlock/fonts/VALVEPulp-Bold.woff2") format("woff2");
+}
+
+html {
+  font-size: 110%;
+}
+
+:root {
+  --font-family: "Deadlock Oracle", "Motiva Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --heading-font-family: "Deadlock Pulp", "Deadlock Oracle", Impact, fantasy;
+  --heading-font-weight: 700;
+  --topic-title-font-weight: 600;
+  --topic-title-font-weight--visited: 400;
+
+  --d-border-radius: 2px;
+  --d-border-radius-large: 4px;
+  --d-button-border-radius: 2px;
+  --d-input-border-radius: 2px;
+  --d-nav-pill-border-radius: 2px;
+
+  --deadlock-panel: color-mix(in srgb, var(--secondary) 82%, var(--primary) 18%);
+  --deadlock-panel-strong: color-mix(in srgb, var(--secondary) 72%, var(--tertiary) 28%);
+  --deadlock-border: color-mix(in srgb, var(--primary) 18%, transparent);
+  --deadlock-orange-low: color-mix(in srgb, var(--tertiary) 16%, transparent);
+  --deadlock-cyan-low: color-mix(in srgb, var(--quaternary) 18%, transparent);
+
+  --d-content-background: transparent;
+  --content-border-color: var(--deadlock-border);
+  --table-border-color: transparent;
+  --d-table-border-color: transparent;
+  --topic-list-item-border-color: transparent;
+  --input-border-color: color-mix(in srgb, var(--primary) 28%, transparent);
+  --metadata-color: color-mix(in srgb, var(--primary) 62%, var(--secondary));
+  --excerpt-color: color-mix(in srgb, var(--primary) 78%, var(--secondary));
+  --title-color: var(--primary);
+  --title-color--read: color-mix(in srgb, var(--primary) 62%, var(--secondary));
+
+  --d-hover: color-mix(in srgb, var(--secondary) 86%, var(--primary) 14%);
+  --d-selected: var(--deadlock-orange-low);
+  --d-selected-text-color: var(--primary);
+  --d-unread-notification-background: var(--tertiary);
+
+  --shadow-header: 0 1px 0 var(--deadlock-border);
+  --shadow-card: 0 10px 30px rgb(0 0 0 / 0.22);
+  --shadow-dropdown: 0 14px 36px rgb(0 0 0 / 0.38);
+  --shadow-composer: 0 -8px 28px rgb(0 0 0 / 0.32);
+
+  --d-button-default-bg-color: color-mix(in srgb, var(--secondary) 72%, var(--primary) 28%);
+  --d-button-default-bg-color--hover: color-mix(in srgb, var(--secondary) 64%, var(--tertiary) 36%);
+  --d-button-default-text-color: var(--primary);
+  --d-button-default-text-color--hover: var(--primary);
+  --d-button-default-icon-color: var(--primary);
+  --d-button-default-icon-color--hover: var(--primary);
+  --d-button-default-border: 1px solid var(--deadlock-border);
+  --d-button-default-border--hover: 1px solid color-mix(in srgb, var(--tertiary) 68%, var(--primary));
+  --d-button-primary-bg-color: var(--tertiary);
+  --d-button-primary-bg-color--hover: #ffac11;
+  --d-button-primary-text-color: #070707;
+  --d-button-primary-text-color--hover: #070707;
+  --d-button-primary-icon-color: #070707;
+  --d-button-primary-icon-color--hover: #070707;
+
+  --d-sidebar-border-color: var(--deadlock-border);
+  --d-sidebar-section-border-color: color-mix(in srgb, var(--primary) 12%, transparent);
+  --d-sidebar-highlight-background: var(--deadlock-orange-low);
+  --d-sidebar-active-background: color-mix(in srgb, var(--tertiary) 28%, transparent);
+  --d-sidebar-active-color: var(--primary);
+  --d-sidebar-link-icon-color: color-mix(in srgb, var(--primary) 72%, var(--secondary));
+}
+
+body {
+  background-color: var(--secondary);
+  background-image:
+    repeating-radial-gradient(circle at 18% 12%, rgb(255 241 220 / 0.040) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(115deg, rgb(255 241 220 / 0.030) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(24deg, rgb(218 90 41 / 0.035) 0 1px, transparent 1px 11px),
+    linear-gradient(180deg, #111 0%, var(--secondary) 18rem);
+  background-attachment: fixed;
+  color: var(--primary);
+  font-feature-settings: "kern" 1;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    repeating-radial-gradient(circle at 15% 20%, rgb(255 241 220 / 0.060) 0 1px, transparent 1px 3px),
+    repeating-radial-gradient(circle at 82% 8%, rgb(63 220 255 / 0.040) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, transparent 0 47px, rgb(255 241 220 / 0.020) 47px 48px, transparent 48px 96px),
+    repeating-linear-gradient(0deg, transparent 0 47px, rgb(255 241 220 / 0.016) 47px 48px, transparent 48px 96px);
+  background-size: 160px 160px, 220px 220px, 96px 96px, 96px 96px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 82%);
+  mask-image: radial-gradient(ellipse at center, black, transparent 82%);
+  opacity: 0.85;
+}
+
+h1,
+h2,
+h3,
+.fancy-title,
+.topic-list .main-link a.title,
+.category-list .category-name {
+  font-weight: var(--heading-font-weight);
+  letter-spacing: 0.012em;
+}
+
+h1,
+.fancy-title {
+  font-size: clamp(2.1rem, 3.5vw, 3.45rem);
+  line-height: 1;
+}
+
+h2,
+.topic-list .main-link a.title {
+  font-size: clamp(1.32rem, 1.72vw, 1.75rem);
+  line-height: 1.1;
+}
+
+h3,
+.category-list .category-name {
+  font-size: clamp(1.15rem, 1.38vw, 1.45rem);
+  line-height: 1.1;
+}
+
+.d-header {
+  background: rgb(17 17 17 / 0.94);
+  border-bottom: 1px solid var(--deadlock-border);
+  backdrop-filter: blur(8px);
+}
+
+.d-header .title a,
+.d-header-icons .icon,
+.header-sidebar-toggle button {
+  color: var(--header_primary);
+}
+
+.sidebar-wrapper {
+  background: linear-gradient(180deg, rgb(17 17 17 / 0.70), rgb(7 7 7 / 0.58));
+  border-right: 1px solid var(--deadlock-border);
+}
+
+.sidebar-wrapper .sidebar-container {
+  border-right: 0;
+}
+
+.list-controls,
+.list-container,
+.category-list,
+.latest-topic-list,
+.top-topic-list,
+.user-content,
+.admin-detail,
+.admin-container,
+.group-details-container,
+.search-container,
+.badges,
+.tags-page,
+.reviewable-container {
+  background: rgb(17 17 17 / 0.72);
+  box-shadow: var(--shadow-card);
+}
+
+.category-list,
+.latest-topic-list,
+.top-topic-list,
+.user-content,
+.admin-detail,
+.admin-container,
+.group-details-container,
+.search-container,
+.badges,
+.tags-page,
+.reviewable-container {
+  border: 1px solid var(--deadlock-border);
+}
+
+.list-controls,
+.list-container {
+  border: 0;
+}
+
+.list-controls {
+  border-bottom: 0;
+  background-image: linear-gradient(90deg, var(--deadlock-orange-low), transparent 38%);
+}
+
+.list-container {
+  border-top-color: transparent;
+}
+
+.topic-list th,
+.category-list th,
+.table-heading,
+.nav-pills > li > a {
+  color: color-mix(in srgb, var(--primary) 68%, var(--tertiary));
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  letter-spacing: 0.035em;
+}
+
+.topic-list,
+.category-list,
+.latest-topic-list,
+.top-topic-list {
+  --content-border-color: transparent;
+  --table-border-color: transparent;
+  --d-table-border-color: transparent;
+  border-color: transparent;
+}
+
+.topic-list th,
+.topic-list td,
+.topic-list tbody,
+.category-list th,
+.category-list td,
+.category-list tbody {
+  border-color: transparent;
+}
+
+.topic-list-item,
+.category-list tbody tr {
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.topic-list-item:hover,
+.category-list tbody tr:hover {
+  background: var(--deadlock-orange-low);
+}
+
+.btn,
+.btn-default,
+.btn-primary,
+.select-kit.combo-box .select-kit-header,
+.select-kit.multi-select .select-kit-header,
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea {
+  border-radius: var(--d-input-border-radius);
+}
+
+.btn-primary,
+.btn.btn-primary {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.035em;
+}
+
+.nav-pills > li > a.active,
+.nav-pills > li.active > a,
+.discourse-tag.box,
+.badge-wrapper.box span.badge-category {
+  background: var(--tertiary);
+  color: #070707;
+}
+
+.discourse-tag.simple,
+a,
+.topic-meta-data .names a,
+.topic-list .main-link a.title:hover {
+  color: var(--tertiary);
+}
+
+.d-editor-container,
+.select-kit .select-kit-collection,
+.menu-panel,
+.user-card .card-content,
+.group-card .card-content {
+  background: rgb(17 17 17 / 0.92);
+  border-color: var(--deadlock-border);
+}
+
+input:focus,
+textarea:focus,
+.select-kit.combo-box .select-kit-header:focus,
+.select-kit.multi-select .select-kit-header:focus {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 1px;
+  box-shadow: none;
+}
+
+.topic-avatar,
+.topic-timer-info {
+  --content-border-color: transparent;
+}
+
+#reply-control {
+  background: rgb(17 17 17 / 0.96);
+}

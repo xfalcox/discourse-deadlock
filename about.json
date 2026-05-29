@@ -1,0 +1,27 @@
+{
+  "name": "discourse-deadlock",
+  "component": false,
+  "authors": "Penar Musaraj",
+  "about_url": "https://www.playdeadlock.com/oldgods",
+  "license_url": null,
+  "theme_version": "0.1.0",
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "color_schemes": {
+    "deadlock-old-gods": {
+      "primary": "fff1dc",
+      "secondary": "070707",
+      "tertiary": "da5a29",
+      "quaternary": "3fdcff",
+      "header_background": "111111",
+      "header_primary": "fff1dc",
+      "highlight": "ffac11",
+      "selected": "2c1e3c",
+      "hover": "171717",
+      "danger": "e41e25",
+      "success": "59bf40",
+      "love": "ee51ff"
+    }
+  },
+  "assets": {}
+}
