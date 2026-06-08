@@ -432,11 +432,12 @@ textarea:focus,
 
 .deadlock-home__feature-link,
 .deadlock-home__card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  min-block-size: 8rem;
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 1fr) minmax(0, 2fr);
+  gap: 1rem;
+  align-items: center;
+  min-block-size: 9rem;
+  padding: 1.15rem;
   background: var(--deadlock-home-panel);
   border: 1px solid var(--deadlock-border);
   color: var(--primary);
@@ -454,6 +455,23 @@ textarea:focus,
   border-color: var(--deadlock-home-border-strong);
   color: var(--primary);
   transform: translateY(-1px);
+}
+
+.deadlock-home__card-image {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: color-mix(in srgb, var(--secondary) 82%, var(--primary) 18%);
+  border: 1px solid var(--deadlock-border);
+  filter: drop-shadow(0 0 1.25rem rgb(0 0 0 / 0.35));
+}
+
+.deadlock-home__card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-inline-size: 0;
 }
 
 .deadlock-home__feature-title,
@@ -558,6 +576,11 @@ textarea:focus,
   .deadlock-home__cards.--chat,
   .deadlock-home__cards.--voice,
   .deadlock-home__lists {
+    grid-template-columns: 1fr;
+  }
+
+  .deadlock-home__feature-link,
+  .deadlock-home__card {
     grid-template-columns: 1fr;
   }
 }

@@ -4,12 +4,15 @@ import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 
 const HOME = {
+  imageBase:
+    "https://cdn.fastly.steamstatic.com/apps/deadlock/images/react/oldgods/",
   playersOnline: "53,802",
   patchNotes: {
     title: "05-22-2026 update",
     excerpt:
       "Read the latest Deadlock patch notes and discuss the current build.",
     url: "/t/05-22-2026-update/9",
+    image: "ui_scoreboard.png",
   },
   categories: [
     {
@@ -17,11 +20,13 @@ const HOME = {
       description:
         "File gameplay issues, UI problems, and reproducible crashes.",
       url: "/c/bug-reports/6",
+      image: "ui_recording.png",
     },
     {
       title: "Known issues",
       description: "Track reports that need extra confirmation or test cases.",
       url: "/c/bug-reports/6",
+      image: "settings_search.png",
     },
   ],
   chatChannels: [
@@ -29,11 +34,13 @@ const HOME = {
       title: "General chat",
       description: "Talk Deadlock, ask questions, and find people online now.",
       url: "/chat/c/general/2",
+      image: "channel_bar.png",
     },
     {
       title: "Match watch party",
       description: "Follow streams, Night Shift games, and community events.",
       url: "/chat/c/general/2",
+      image: "postgame_scorecard.png",
     },
   ],
   voiceChannel: {
@@ -42,6 +49,7 @@ const HOME = {
       "Join the Resenha voice room for live team-up and watch-party calls.",
     url: "#deadlock-voice",
     slug: "watercooler",
+    image: "ui_random.png",
   },
   matches: [
     {
@@ -162,11 +170,18 @@ export default apiInitializer((api) => {
             class="deadlock-home__feature-link"
             href={{@outletArgs.model.patchNotes.url}}
           >
-            <span class="deadlock-home__feature-title">
-              {{@outletArgs.model.patchNotes.title}}
-            </span>
-            <span class="deadlock-home__feature-copy">
-              {{@outletArgs.model.patchNotes.excerpt}}
+            <img
+              class="deadlock-home__card-image"
+              src="{{@outletArgs.model.imageBase}}{{@outletArgs.model.patchNotes.image}}"
+              alt=""
+            />
+            <span class="deadlock-home__card-content">
+              <span class="deadlock-home__feature-title">
+                {{@outletArgs.model.patchNotes.title}}
+              </span>
+              <span class="deadlock-home__feature-copy">
+                {{@outletArgs.model.patchNotes.excerpt}}
+              </span>
             </span>
           </a>
         </section>
@@ -182,11 +197,18 @@ export default apiInitializer((api) => {
           <div class="deadlock-home__cards --categories">
             {{#each @outletArgs.model.categories as |category|}}
               <a class="deadlock-home__card" href={{category.url}}>
-                <span
-                  class="deadlock-home__card-title"
-                >{{category.title}}</span>
-                <span class="deadlock-home__card-copy">
-                  {{category.description}}
+                <img
+                  class="deadlock-home__card-image"
+                  src="{{@outletArgs.model.imageBase}}{{category.image}}"
+                  alt=""
+                />
+                <span class="deadlock-home__card-content">
+                  <span
+                    class="deadlock-home__card-title"
+                  >{{category.title}}</span>
+                  <span class="deadlock-home__card-copy">
+                    {{category.description}}
+                  </span>
                 </span>
               </a>
             {{/each}}
@@ -204,9 +226,18 @@ export default apiInitializer((api) => {
           <div class="deadlock-home__cards --chat">
             {{#each @outletArgs.model.chatChannels as |channel|}}
               <a class="deadlock-home__card" href={{channel.url}}>
-                <span class="deadlock-home__card-title">{{channel.title}}</span>
-                <span class="deadlock-home__card-copy">
-                  {{channel.description}}
+                <img
+                  class="deadlock-home__card-image"
+                  src="{{@outletArgs.model.imageBase}}{{channel.image}}"
+                  alt=""
+                />
+                <span class="deadlock-home__card-content">
+                  <span
+                    class="deadlock-home__card-title"
+                  >{{channel.title}}</span>
+                  <span class="deadlock-home__card-copy">
+                    {{channel.description}}
+                  </span>
                 </span>
               </a>
             {{/each}}
@@ -227,11 +258,18 @@ export default apiInitializer((api) => {
               href={{@outletArgs.model.voiceChannel.url}}
               {{on "click" joinVoiceRoom}}
             >
-              <span class="deadlock-home__card-title">
-                {{@outletArgs.model.voiceChannel.title}}
-              </span>
-              <span class="deadlock-home__card-copy">
-                {{@outletArgs.model.voiceChannel.description}}
+              <img
+                class="deadlock-home__card-image"
+                src="{{@outletArgs.model.imageBase}}{{@outletArgs.model.voiceChannel.image}}"
+                alt=""
+              />
+              <span class="deadlock-home__card-content">
+                <span class="deadlock-home__card-title">
+                  {{@outletArgs.model.voiceChannel.title}}
+                </span>
+                <span class="deadlock-home__card-copy">
+                  {{@outletArgs.model.voiceChannel.description}}
+                </span>
               </span>
             </a>
           </div>
