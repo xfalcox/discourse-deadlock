@@ -1,117 +1,121 @@
+import { on } from "@ember/modifier";
 import { themePrefix } from "virtual:theme";
-import { ajax } from "discourse/lib/ajax";
 import { apiInitializer } from "discourse/lib/api";
 import { i18n } from "discourse-i18n";
 
 const HOME = {
   playersOnline: "53,802",
   patchNotes: {
-    title: "Balance update 06-06-2026",
+    title: "05-22-2026 update",
     excerpt:
-      "Weapon falloff tuning, Mirage lane fixes, and another pass on experimental item timings.",
-    url: "/c/changelog",
+      "Read the latest Deadlock patch notes and discuss the current build.",
+    url: "/t/05-22-2026-update/9",
   },
   categories: [
     {
-      title: "Hero builds",
-      description: "Discuss lane plans, item paths, and matchup notes.",
-      url: "/c/hero-builds",
+      title: "Bug reports",
+      description:
+        "File gameplay issues, UI problems, and reproducible crashes.",
+      url: "/c/bug-reports/6",
     },
     {
-      title: "Strategy lab",
-      description: "Share macro calls, timing windows, and team compositions.",
-      url: "/c/strategy",
+      title: "Known issues",
+      description: "Track reports that need extra confirmation or test cases.",
+      url: "/c/bug-reports/6",
     },
   ],
   chatChannels: [
     {
-      title: "Looking for group",
-      description: "Find teammates for ranked and casual stacks.",
-      url: "/chat/channel/lfg",
+      title: "General chat",
+      description: "Talk Deadlock, ask questions, and find people online now.",
+      url: "/chat/c/general/2",
     },
     {
-      title: "Scrim finder",
-      description: "Coordinate practice blocks and lobby rules.",
-      url: "/chat/channel/scrims",
-    },
-    {
-      title: "Live match chat",
-      description: "Follow tournaments and community showmatches.",
-      url: "/chat/channel/live-matches",
+      title: "Match watch party",
+      description: "Follow streams, Night Shift games, and community events.",
+      url: "/chat/c/general/2",
     },
   ],
+  voiceChannel: {
+    title: "Watercooler voice",
+    description:
+      "Join the Resenha voice room for live team-up and watch-party calls.",
+    url: "#deadlock-voice",
+    slug: "watercooler",
+  },
   matches: [
     {
-      title: "Amber Hand vs. Midboss Union",
-      meta: "June 8, 2026, 19:00 UTC",
-      url: "/t/amber-hand-vs-midboss-union",
+      title: "Abrahams vs. Lowkey W",
+      meta: "Night Shift #41 EU semifinal, Bo1, June 3, 2026, 15:00 EST",
+      url: "https://liquipedia.net/deadlock/Deadlock_Night_Shift/41/EU",
     },
     {
-      title: "Canal Saints vs. Pocket Aces",
-      meta: "June 9, 2026, 21:30 UTC",
-      url: "/t/canal-saints-vs-pocket-aces",
+      title: "Leviathan vs. Lowkey W",
+      meta: "Night Shift #41 EU grand final, Bo3, June 3, 2026, 16:00 EST",
+      url: "https://liquipedia.net/deadlock/Deadlock_Night_Shift/41/EU",
     },
     {
-      title: "Oracle Cup qualifiers",
-      meta: "June 14, 2026",
-      url: "/t/oracle-cup-qualifiers",
+      title: "Lowkey W 2-0 Leviathan",
+      meta: "Grand final result, games lasted 29:19 and 29:17",
+      url: "https://liquipedia.net/deadlock/Deadlock_Night_Shift/41/EU",
     },
   ],
   news: [
     {
-      title: "New hero labs are open for weekend testing",
-      meta: "Steam news",
-      url: "https://store.steampowered.com/news/app/1422450",
+      title:
+        "Don't let Deadlock's MOBA tag scare you off - there's a quick play mode for dummies which is the perfect entry point",
+      meta: "PC Gamer via Steam News",
+      url: "https://steamstore-a.akamaihd.net/news/externalpost/PC%20Gamer/1834602721198635",
     },
     {
-      title: "Matchmaking update focuses on duo queue spread",
-      meta: "Steam news",
-      url: "https://store.steampowered.com/news/app/1422450",
+      title:
+        "Valve just reworked Deadlock's Soul Urn yet again, and even the item itself is ready to give up",
+      meta: "PCGamesN via Steam News",
+      url: "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1834602721190391",
     },
     {
-      title: "Community tournament tools enter preview",
-      meta: "Steam news",
-      url: "https://store.steampowered.com/news/app/1422450",
+      title: "Minor Update - 06-04-2026",
+      meta: "Community Announcements via Steam News",
+      url: "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1834602721188293",
     },
   ],
   ranking: [
-    { rank: 1, player: "Pale Lantern", mmr: "12,840" },
-    { rank: 2, player: "Canal King", mmr: "12,695" },
-    { rank: 3, player: "Seven Bells", mmr: "12,604" },
-    { rank: 4, player: "Ivy Circuit", mmr: "12,511" },
-    { rank: 5, player: "Wraithline", mmr: "12,448" },
-    { rank: 6, player: "Mercury Vow", mmr: "12,380" },
-    { rank: 7, player: "Haze Limit", mmr: "12,322" },
-    { rank: 8, player: "Kelvin Draft", mmr: "12,210" },
-    { rank: 9, player: "Bebop Prime", mmr: "12,168" },
-    { rank: 10, player: "Infernal Lane", mmr: "12,101" },
+    { rank: 1, flag: "🇳🇱", player: "cosmetical", mmr: "12,840" },
+    { rank: 2, flag: "🇷🇺", player: "Tas", mmr: "12,695" },
+    { rank: 3, flag: "🇷🇺", player: "saintmxsm", mmr: "12,604" },
+    { rank: 4, flag: "🇬🇧", player: "Zerggy", mmr: "12,511" },
+    { rank: 5, flag: "🏴", player: "lystic", mmr: "12,448" },
+    { rank: 6, flag: "🇸🇪", player: "Hoot", mmr: "12,380" },
+    { rank: 7, flag: "🇩🇪", player: "vraic", mmr: "12,322" },
+    { rank: 8, flag: "🇺🇦", player: "freemok", mmr: "12,210" },
+    { rank: 9, flag: "🇧🇾", player: "oses", mmr: "12,168" },
+    { rank: 10, flag: "🇷🇺", player: "obikym", mmr: "12,101" },
   ],
 };
 
-async function latestPatchNotes() {
-  try {
-    const response = await ajax("/c/changelog/l/latest.json");
-    const topic = response.topic_list?.topics?.[0];
-
-    if (topic) {
-      return {
-        title: topic.title,
-        excerpt: topic.excerpt || HOME.patchNotes.excerpt,
-        url: `/t/${topic.slug}/${topic.id}`,
-      };
-    }
-  } catch {
-    // Demo sites may not have a changelog category yet.
-  }
-
-  return HOME.patchNotes;
-}
-
 export default apiInitializer((api) => {
-  api.registerBehaviorTransformer("custom-homepage-model", async () => ({
-    ...HOME,
-    patchNotes: await latestPatchNotes(),
-  }));
+  const joinVoiceRoom = async (event) => {
+    event.preventDefault();
+
+    try {
+      const roomsService = api.container.lookup("service:resenha-rooms");
+      const resenhaWebrtc = api.container.lookup("service:resenha-webrtc");
+
+      await roomsService.ready;
+
+      const room =
+        roomsService.roomBySlug?.(HOME.voiceChannel.slug) ||
+        roomsService.rooms?.[0];
+
+      if (room) {
+        await resenhaWebrtc.join(room);
+      }
+    } catch {
+      // Resenha is optional for this demo theme.
+    }
+  };
+
+  api.registerBehaviorTransformer("custom-homepage-model", () => HOME);
 
   api.renderInOutlet(
     "custom-homepage",
@@ -209,6 +213,30 @@ export default apiInitializer((api) => {
           </div>
         </section>
 
+        <section class="deadlock-home__section" id="deadlock-voice">
+          <div class="deadlock-home__section-heading">
+            <p class="deadlock-home__eyebrow">
+              {{i18n (themePrefix "deadlock_home.voice_eyebrow")}}
+            </p>
+            <h2>{{i18n (themePrefix "deadlock_home.voice_title")}}</h2>
+          </div>
+
+          <div class="deadlock-home__cards --voice">
+            <a
+              class="deadlock-home__card"
+              href={{@outletArgs.model.voiceChannel.url}}
+              {{on "click" joinVoiceRoom}}
+            >
+              <span class="deadlock-home__card-title">
+                {{@outletArgs.model.voiceChannel.title}}
+              </span>
+              <span class="deadlock-home__card-copy">
+                {{@outletArgs.model.voiceChannel.description}}
+              </span>
+            </a>
+          </div>
+        </section>
+
         <div class="deadlock-home__lists">
           <section class="deadlock-home__panel">
             <div class="deadlock-home__section-heading">
@@ -264,7 +292,10 @@ export default apiInitializer((api) => {
               {{#each @outletArgs.model.ranking as |player|}}
                 <li class="deadlock-home__leaderboard-item">
                   <span class="deadlock-home__rank">#{{player.rank}}</span>
-                  <span class="deadlock-home__player">{{player.player}}</span>
+                  <span class="deadlock-home__player">
+                    <span class="deadlock-home__flag">{{player.flag}}</span>
+                    {{player.player}}
+                  </span>
                   <span class="deadlock-home__rating">{{player.mmr}}</span>
                 </li>
               {{/each}}

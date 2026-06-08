@@ -481,7 +481,11 @@ textarea:focus,
 }
 
 .deadlock-home__cards.--chat {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.deadlock-home__cards.--voice {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .deadlock-home__lists {
@@ -538,14 +542,21 @@ textarea:focus,
 }
 
 .deadlock-home__player {
+  display: inline-flex;
+  gap: 0.35rem;
   min-inline-size: 0;
   overflow-wrap: anywhere;
+}
+
+.deadlock-home__flag {
+  flex: 0 0 auto;
 }
 
 @media (width <= 58rem) {
   .deadlock-home__hero,
   .deadlock-home__cards.--categories,
   .deadlock-home__cards.--chat,
+  .deadlock-home__cards.--voice,
   .deadlock-home__lists {
     grid-template-columns: 1fr;
   }
