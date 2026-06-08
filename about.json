@@ -7,6 +7,9 @@
   "theme_version": "0.1.0",
   "minimum_discourse_version": null,
   "maximum_discourse_version": null,
+  "modifiers": {
+    "custom_homepage": true
+  },
   "color_schemes": {
     "deadlock-old-gods": {
       "primary": "fff1dc",

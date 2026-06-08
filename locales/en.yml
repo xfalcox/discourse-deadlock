@@ -1,0 +1,21 @@
+en:
+  deadlock_home:
+    eyebrow: "Community command center"
+    title: "Deadlock"
+    intro: "Track the live demo community, find the newest changes, and jump into the forum, chat, match schedule, news, and rankings."
+    players_online: "players online now"
+    players_online_aria: "%{count} players online now"
+    patch_eyebrow: "Latest patch notes"
+    patch_title: "Read the newest changelog"
+    forum_eyebrow: "Forum"
+    forum_title: "Join the discussion"
+    chat_eyebrow: "Chat"
+    chat_title: "Find a channel"
+    matches_eyebrow: "Esports"
+    matches_title: "Upcoming matches"
+    news_eyebrow: "Game news"
+    news_title: "Latest from Steam"
+    ranking_eyebrow: "Leaderboard"
+    ranking_title: "Top 10 players"
+  theme_metadata:
+    description: "A Discourse theme for a Deadlock demo community."

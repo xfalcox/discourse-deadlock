@@ -323,3 +323,230 @@ textarea:focus,
 #reply-control {
   background: rgb(17 17 17 / 0.96);
 }
+
+.deadlock-home {
+  --deadlock-home-panel: color-mix(
+    in srgb,
+    var(--secondary) 76%,
+    var(--primary) 24%
+  );
+  --deadlock-home-panel-soft: color-mix(
+    in srgb,
+    var(--secondary) 84%,
+    var(--primary) 16%
+  );
+  --deadlock-home-border-strong: color-mix(
+    in srgb,
+    var(--tertiary) 38%,
+    var(--deadlock-border)
+  );
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  inline-size: min(100%, 74rem);
+  margin-block: 1.5rem 3rem;
+  margin-inline: auto;
+}
+
+.deadlock-home__hero,
+.deadlock-home__panel,
+.deadlock-home__section {
+  background:
+    linear-gradient(120deg, var(--deadlock-orange-low), transparent 38%),
+    var(--deadlock-home-panel-soft);
+  border: 1px solid var(--deadlock-border);
+  box-shadow: var(--shadow-card);
+}
+
+.deadlock-home__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(13rem, 18rem);
+  gap: 1.5rem;
+  align-items: end;
+  min-block-size: 20rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.deadlock-home__hero-copy {
+  max-inline-size: 42rem;
+}
+
+.deadlock-home__eyebrow {
+  margin: 0 0 0.45rem;
+  color: color-mix(in srgb, var(--primary) 72%, var(--tertiary));
+  font-family: var(--heading-font-family);
+  font-size: var(--font-down-1);
+  font-weight: var(--heading-font-weight);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.deadlock-home__title {
+  margin: 0;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+}
+
+.deadlock-home__intro {
+  max-inline-size: 38rem;
+  margin-block: 1rem 0;
+  color: color-mix(in srgb, var(--primary) 82%, var(--secondary));
+  font-size: var(--font-up-1);
+  line-height: 1.45;
+}
+
+.deadlock-home__counter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--secondary) 68%, var(--tertiary) 32%);
+  border: 1px solid var(--deadlock-home-border-strong);
+}
+
+.deadlock-home__counter-value {
+  font-family: var(--heading-font-family);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: var(--heading-font-weight);
+  line-height: 1;
+}
+
+.deadlock-home__counter-label {
+  color: color-mix(in srgb, var(--primary) 76%, var(--secondary));
+  font-size: var(--font-down-1);
+  text-transform: uppercase;
+}
+
+.deadlock-home__panel,
+.deadlock-home__section {
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.deadlock-home__section-heading {
+  margin-block-end: 1rem;
+}
+
+.deadlock-home__section-heading h2 {
+  margin: 0;
+}
+
+.deadlock-home__feature-link,
+.deadlock-home__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-block-size: 8rem;
+  padding: 1rem;
+  background: var(--deadlock-home-panel);
+  border: 1px solid var(--deadlock-border);
+  color: var(--primary);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    transform 120ms ease;
+}
+
+.deadlock-home__feature-link:hover,
+.deadlock-home__card:hover {
+  background: var(--deadlock-panel-strong);
+  border-color: var(--deadlock-home-border-strong);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.deadlock-home__feature-title,
+.deadlock-home__card-title {
+  color: var(--primary);
+  font-family: var(--heading-font-family);
+  font-size: var(--font-up-2);
+  font-weight: var(--heading-font-weight);
+  line-height: 1.08;
+}
+
+.deadlock-home__feature-copy,
+.deadlock-home__card-copy {
+  color: color-mix(in srgb, var(--primary) 78%, var(--secondary));
+  line-height: 1.4;
+}
+
+.deadlock-home__cards {
+  display: grid;
+  gap: 1rem;
+}
+
+.deadlock-home__cards.--categories {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.deadlock-home__cards.--chat {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.deadlock-home__lists {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.deadlock-home__list,
+.deadlock-home__leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deadlock-home__list-item,
+.deadlock-home__leaderboard-item {
+  display: grid;
+  gap: 0.35rem;
+  padding-block: 0 0.65rem;
+  border-block-end: 1px solid var(--deadlock-border);
+}
+
+.deadlock-home__list-item:last-child,
+.deadlock-home__leaderboard-item:last-child {
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+
+.deadlock-home__list-item a {
+  color: var(--primary);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.deadlock-home__list-item span,
+.deadlock-home__rating {
+  color: color-mix(in srgb, var(--primary) 62%, var(--secondary));
+  font-size: var(--font-down-1);
+}
+
+.deadlock-home__leaderboard-item {
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  align-items: baseline;
+}
+
+.deadlock-home__rank {
+  color: var(--tertiary);
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+}
+
+.deadlock-home__player {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (width <= 58rem) {
+  .deadlock-home__hero,
+  .deadlock-home__cards.--categories,
+  .deadlock-home__cards.--chat,
+  .deadlock-home__lists {
+    grid-template-columns: 1fr;
+  }
+}
