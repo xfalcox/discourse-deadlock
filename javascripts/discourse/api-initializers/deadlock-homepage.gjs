@@ -102,7 +102,26 @@ const HOME = {
 };
 
 export default apiInitializer((api) => {
+  const showLogin = () => {
+    api.container.lookup("route:application").send("showLogin");
+  };
+
+  const requireLogin = (event) => {
+    if (api.getCurrentUser()) {
+      return false;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    showLogin();
+    return true;
+  };
+
   const joinVoiceRoom = async (event) => {
+    if (requireLogin(event)) {
+      return;
+    }
+
     event.preventDefault();
 
     try {
@@ -225,7 +244,11 @@ export default apiInitializer((api) => {
 
           <div class="deadlock-home__cards --chat">
             {{#each @outletArgs.model.chatChannels as |channel|}}
-              <a class="deadlock-home__card" href={{channel.url}}>
+              <a
+                class="deadlock-home__card"
+                href={{channel.url}}
+                {{on "click" requireLogin}}
+              >
                 <img
                   class="deadlock-home__card-image"
                   src="{{@outletArgs.model.imageBase}}{{channel.image}}"
