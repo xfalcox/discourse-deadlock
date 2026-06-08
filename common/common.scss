@@ -363,7 +363,7 @@ textarea:focus,
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(13rem, 18rem);
   gap: 1.5rem;
-  align-items: end;
+  align-items: start;
   min-block-size: 20rem;
   padding: clamp(1.25rem, 4vw, 3rem);
 }
@@ -396,6 +396,7 @@ textarea:focus,
 }
 
 .deadlock-home__counter {
+  align-self: end;
   display: flex;
   flex-direction: column;
   gap: 0.15rem;

@@ -34,7 +34,7 @@ const HOME = {
       title: "General chat",
       description: "Talk Deadlock, ask questions, and find people online now.",
       url: "/chat/c/general/2",
-      image: "channel_bar.png",
+      image: "top_bar.png",
     },
     {
       title: "Match watch party",
