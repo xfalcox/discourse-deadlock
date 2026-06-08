@@ -364,6 +364,17 @@ textarea:focus,
   grid-template-columns: minmax(0, 1fr) minmax(13rem, 18rem);
   gap: 1.5rem;
   align-items: start;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--deadlock-home-panel-soft) 94%, transparent),
+      color-mix(in srgb, var(--deadlock-home-panel-soft) 84%, transparent) 55%,
+      color-mix(in srgb, var(--deadlock-home-panel-soft) 96%, transparent)
+    ),
+    linear-gradient(120deg, var(--deadlock-orange-low), transparent 38%),
+    url("https://cdn.fastly.steamstatic.com/apps/deadlock/images/react/oldgods/patrons_header.png?2")
+      center / cover no-repeat,
+    var(--deadlock-home-panel-soft);
   min-block-size: 20rem;
   padding: clamp(1.25rem, 4vw, 3rem);
 }
